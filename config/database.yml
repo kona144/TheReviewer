@@ -1,0 +1,15 @@
+# PG !!!
+#   gem install sqlite3
+#
+#   Ensure the SQLite 3 gem is defined in your Gemfile
+#   gem 'pg'
+#
+development:
+    adapter: postgresql
+    encoding: unicode
+    host: ec2-107-21-102-69.compute-1.amazonaws.com
+    database: df5ain2kst5v3c
+    pool: 5
+    username: ybccjqjisrgkhn
+    password: zaYXYti817d0lvpUJVn3w5yTik
+    port: 5432

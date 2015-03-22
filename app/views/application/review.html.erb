@@ -1,0 +1,97 @@
+<% 
+id=request.original_url 
+
+id=id.split('.')[-1]
+
+review=Review.find(id)
+%>
+
+<a  name="services"></a>
+    <div class="content-section-a">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading"><%=review.title%></h2>
+                    <p class="lead"><%=review.content%></p>
+                </div>
+                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                    <img class="img-responsive" src="img/ipad.png" alt="">
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-a -->
+
+    <div class="content-section-b">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Comments.</h2>
+                    <p class="lead">
+
+
+
+		<% 
+                @comments=Comment.where(review_id: id).all
+
+
+        @comments.each do |c| 
+        
+       userid=c.user_id
+
+        @user=User.where(id: userid).first
+
+
+
+        %>
+       <p class="lead"> <%=@user.name+" " +@user.surname+" said: "%></p>
+			
+			<%=c.content %>
+			<br/>
+<br/>
+<hr/>
+
+		<% end %>
+		<form action="/create_comment" method="post">
+      
+        <h1></h1>
+        
+        <fieldset>
+          
+          <p class="lead">Write your comment here.</p>
+          
+          <textarea rows="3" cols="50" id="content" name="content">
+
+
+          </textarea>
+         <input type="hidden" id="review_id" name="review_id" value=<%=id%>></input>
+        
+        </fieldset>
+        <input value="Comment." type="submit"/>
+</form>
+
+
+                    </p>
+
+                </div>
+                <div class="col-lg-5 col-sm-pull-6  col-sm-6">
+                    <img class="img-responsive" src="img/dog.png" alt="">
+                </div>
+
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-b -->

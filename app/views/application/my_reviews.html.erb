@@ -1,0 +1,72 @@
+
+<% 
+user = User.where(email: session[:email]).first
+@myreviews=Review.where(user_id: user.id).all
+
+
+@myreviews.each do |t| 
+id=t.id 
+%>
+            
+
+ <div class="content-section-a">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+
+                    <h2 class="section-heading">
+                        <%=t.title %></h2>
+                        <p class="lead">I mean you could try harder with the title.</p>
+                        <form action="/change_title" method="POST" >
+                        <input type="text" id="title" name="title" placeholder="Epicer title."/>
+                        <input type="hidden" id="review_id" name="review_id" value=<%=id%>></input>
+                        <input type="submit" value="Do it !"/>
+                     </form>
+
+                        
+                   
+                    <p class="lead">
+<p class="lead">I'm to lazy to read the review, but I can spot grammar mistakes from a mile away.</p>
+                        <form action="/change_content" method="POST" >
+                            <textarea rows="10" cols="75" id="content" name="content">
+
+<%=t.content%>
+          </textarea>
+          <input type="hidden" id="review_id" name="review_id" value=<%=id%>></input>
+                        <input type="submit" value="Do it !"/>
+                     </form>
+                            </p>
+                </div>
+                <div class="col-lg-5 col-lg-offset-2 col-sm-6"><!--TLE PRIDEJO SLIKE-->
+                    <img class="img-responsive" src="img/ipad.png" alt="" width="50%" height="50%">
+                </div>
+                <p class="lead">This is the last thing you want to do if your review is bad. You can edit the title or the review any time of the day.</p>
+
+
+                
+
+<script type="text/javascript">
+
+function clicked(e)
+{
+    if(!confirm("Its not that bad !!!. It will get better... Do you really want to remove it :( ?"))e.preventDefault();
+}
+</script>
+                <form action="/remove_review" method="POST" id="myCoolForm">
+                           <input type="hidden" id="review_id" name="review_id" value=<%=id%>></input>
+                        <input type="submit" onclick="clicked(event)" value="Remove it :("/>
+                     </form>
+
+
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-a -->
+    <%end%>
+

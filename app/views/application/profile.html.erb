@@ -1,0 +1,69 @@
+<div class="content-section-a">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Here you can edit stuff you don't like about yourself.</h2>
+                    <p class="lead">
+
+
+
+                        <%  reviewer = User.where(email: session[:email]).first
+
+                            @person = reviewer.name
+
+                           %>
+
+                   
+
+                     It says here that your name is <b><%=reviewer.name%></b>. Quite a funny name, but unlike in the real world you can change it for free below this sentence.
+
+                     <form action="/change_name" method="POST" >
+                        <input type="text" id="name" name="name" placeholder="Better name."/>
+                        <input type="submit" value="Do it !"/>
+                     </form>
+
+                     <br/>
+
+                     <p class="lead"> Hmm <b><%=reviewer.surname%></b>. I'm not even gonna comment on this one.  </p>
+
+                     <form action="/change_surname" method="POST" >
+                        <input type="text" id="surname" name="surname" placeholder="Fancier last name."/>
+                        <input type="submit" value="Do it !"/>
+                     </form>
+                    <br/>
+                    <p class="lead"> If you use your name and 3 random numbers in your password I would recommend you to change it.  </p>
+
+                    <form action="/change_password" method="POST" >
+                        <input type="password" id="password" name="password" placeholder="Better password."/>
+                        <input type="password" id="password_confirm" name="password_confirm" placeholder="Confirm better password."/>
+                        <input type="submit" value="Do it !"/>
+                     </form>
+
+
+
+                    </p>
+                </div>
+                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                    <img class="img-responsive" src="img/ipad.png" alt="">
+                    <p>Atleast your picture is amazing. If you close one eye...and then the other one.</p>
+           <!--     
+        <h1>File Upload</h1>
+
+<%= form_tag({action: :uploadFile}, multipart: true) do %>
+<p><label for="upload_file">Select File</label> : 
+<%= file_field 'upload', 'datafile' %></p>
+<%= submit_tag "Upload" %>
+<% end %>
+
+-->
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-a -->

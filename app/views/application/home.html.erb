@@ -1,0 +1,34 @@
+
+<% @reviews.each do |t| %>
+            
+
+ <div class="content-section-a">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+
+                    <h2 class="section-heading">
+                        <%=link_to t.title, review_path(t.id) %>
+                        
+                    </h2>
+                    <p class="lead"> <% content_review=t.content 
+                                        content_review=content_review[0, 200] + "..."
+                    %>   <%=content_review%></p>
+                </div>
+                <div class="col-lg-5 col-lg-offset-2 col-sm-6"><!--TLE PRIDEJO SLIKE-->
+                    <img class="img-responsive" src="img/ipad.png" alt="" width="50%" height="50%">
+                </div>
+
+                
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-a -->
+    <%end%>
+
