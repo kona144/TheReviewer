@@ -274,8 +274,9 @@ redirect_to '/my_reviews#services'
 end
 
 def remove_review
-
-
+review=Review.find(params[:review_id])
+review.destroy
+redirect_to '/my_reviews#services'
 end
 
 
