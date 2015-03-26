@@ -1,16 +1,16 @@
 Rails.application.routes.draw do
-get 'index', to:'application#index'
-  get 'home', to: 'application#home'
-    get 'profile', to: 'application#profile'
-    post 'login', to: 'application#login'
-     get 'logout', to: 'application#logout'
-     post 'create_user', to: 'application#create_user'
-     get 'profile', to: 'application#profile'
-post 'change_picture', to: 'application#change_picture'
-post 'uploadFile',to: 'application#uploadFile'
-post 'change_surname',to: 'application#change_surname'
-post 'change_name',to: 'application#change_name'
-post 'change_password',to: 'application#change_password'
+get '/index', to:'application#index'
+  get '/home', to: 'application#home'
+    get '/profile', to: 'application#profile'
+    post '/login', to: 'application#login'
+     get '/logout', to: 'application#logout'
+     post '/create_user', to: 'application#create_user'
+     get '/profile', to: 'application#profile'
+post '/change_picture', to: 'application#change_picture'
+post '/uploadFile',to: 'application#uploadFile'
+post '/change_surname',to: 'application#change_surname'
+post '/change_name',to: 'application#change_name'
+post '/change_password',to: 'application#change_password'
 
 get '/new_review',to: 'application#new_review'
 post '/create_review',to: 'application#create_review'
@@ -25,7 +25,7 @@ post '/remove_review',to: 'application#remove_review'
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'application#home'
+   root to:'application#home'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

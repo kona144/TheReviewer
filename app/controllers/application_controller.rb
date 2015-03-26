@@ -3,6 +3,10 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
 
   skip_before_action :verify_authenticity_token
+def log
+
+
+end
 
 def my_reviews
 
@@ -96,12 +100,6 @@ end
 
   end
 
-def login
-
-
-
-
-end
 
 def new_review
       if session[:signed_in] == true
@@ -141,7 +139,8 @@ surname = params[:surname]
 email =params[:email]
 password =params[:password]
 password_confirmation =params[:password_confirmation]
-
+existing_email=User.where(email: email).first
+if(existing_email != email)
 if(password == password_confirmation)
 
 user = User.create_with_password(name,surname,email,password)
@@ -150,12 +149,17 @@ if user
 	session[:email] = user.email
 	redirect_to '/home'
 	else
-		redirect_to '/index'
+		redirect_to '/index' #neusprešno ustvarjen user
 	end
 	else
-		redirect_to '/index'
+		redirect_to '/index' #gesla nista enaka
 end
+else
+
+redirect_to '/index' #email obstaja
+
   end
+end
 
   def logout
 
