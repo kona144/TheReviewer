@@ -148,7 +148,7 @@ review_image=review.id.to_s + uploaded_io.original_filename
     review.save
   end
   redirect_to '/home#services'
-    redirect_to '/new_review'
+ 
   end
 
   end
