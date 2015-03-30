@@ -293,6 +293,7 @@ redirect_to '/my_reviews#services'
 
 end
 
+<<<<<<< HEAD
 def review_pic_upload
   review=Review.find(params[:review_id])
     uploaded_io = params[:picture]
@@ -305,11 +306,16 @@ def review_pic_upload
   end
 end
 
+=======
+>>>>>>> b91ddf79896f777296250abf6afd1cd13bc57247
 def remove_review
 review=Review.find(params[:review_id])
 review.destroy
 redirect_to '/my_reviews#services'
+<<<<<<< HEAD
 
+=======
+>>>>>>> b91ddf79896f777296250abf6afd1cd13bc57247
 end
 
 
