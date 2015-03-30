@@ -47,18 +47,14 @@
                     </p>
                 </div>
                 <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <img class="img-responsive" src="img/ipad.png" alt="">
+                   
+                    <img class="img-responsive" alt="Please select an image to upload" src=uploads/profiles/<%=reviewer.profile_pic%>></img>
                     <p>Atleast your picture is amazing. If you close one eye...and then the other one.</p>
-           <!--     
-        <h1>File Upload</h1>
-
-<%= form_tag({action: :uploadFile}, multipart: true) do %>
-<p><label for="upload_file">Select File</label> : 
-<%= file_field 'upload', 'datafile' %></p>
-<%= submit_tag "Upload" %>
-<% end %>
-
--->
+  <form action="/profile_pic_upload" method="post" enctype="multipart/form-data">
+    Select image to upload:
+    <input type="file" name="picture" id="picture">
+    <input type="submit" value="Upload Image" name="submit">
+</form>
                 </div>
             </div>
 

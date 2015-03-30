@@ -11,7 +11,7 @@ post '/uploadFile',to: 'application#uploadFile'
 post '/change_surname',to: 'application#change_surname'
 post '/change_name',to: 'application#change_name'
 post '/change_password',to: 'application#change_password'
-
+get '/logs',to: 'application#logs'
 get '/new_review',to: 'application#new_review'
 post '/create_review',to: 'application#create_review'
 get '/review',to: 'application#review'
@@ -20,6 +20,9 @@ get '/my_reviews',to:'application#my_reviews'
 post '/change_title',to: 'application#change_title'
 post '/change_content',to: 'application#change_content'
 post '/remove_review',to: 'application#remove_review'
+get '/log',to:'application#log'
+post '/profile_pic_upload',to: 'application#profile_pic_upload'
+post '/review_pic_upload',to: 'application#review_pic_upload'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

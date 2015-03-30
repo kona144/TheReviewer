@@ -2,6 +2,8 @@
 <html lang="en">
 
 <head>
+
+    <link rel="shortcut icon" href="img/logo_t.png">
 <%=
 
 if session[:signed_in] == true
@@ -70,7 +72,7 @@ if log
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                
+           
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -78,6 +80,7 @@ if log
 
 
                 		<% if session[:signed_in] != true  %>
+                        
                     <li>
                        <!-- <a href="#about">Log In</a> -->
                     </li>
@@ -87,7 +90,17 @@ if log
                     <li>
                        <!-- <a href="#contact">Contact</a>-->
                     </li>
-                    <% else %>
+                    <% else 
+
+
+                    admin=User.where(email: session[:email]).first 
+
+                    if admin.admin == "1"
+                        %>
+                     <li>
+                        <a href="/logs">Logs.</a>
+                    </li>
+                         <% end %>
                     <li>
                         <a href="/my_reviews#services">Your reviews.</a>
                     </li>

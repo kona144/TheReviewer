@@ -1,0 +1,72 @@
+
+<div class="content-section-a">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Select logs by users.</h2>
+                    <p class="lead">
+<ul>
+   <%  @all_users=User.all
+
+    @all_users.each do |t| %>
+<li><%=link_to t.name + " " +t.surname, log_path(t.id) %></li>
+<% end %>
+    </ul>
+
+
+                    </p>
+                </div>
+               
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-a -->
+
+
+
+
+<center><h2>Latest logs.</h2></center>
+<% @logs=Log.all
+@logs=@logs.order('id DESC')
+
+@logs.each do |t| %>
+            
+
+ <div class="content-section-a">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+
+                  
+                    	<% user=User.find(t.user_id)
+
+                    	  %>
+                        <%="User_id: "+t.user_id + ". "+user.name+" "+user.surname %>
+                        
+                    
+                    <p class="lead"><%=t.user_ip %><br/>
+                    		<%=t.action %><br/>
+                    		<%=t.time%>
+                     </p>
+                </div>
+               
+
+                
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-a -->
+    <%end%>
+

@@ -8,7 +8,7 @@
                    
                     <p class="lead">        
  
-<form action="/create_review" method="post">
+<form action="/create_review" method="post" enctype="multipart/form-data">
       
         <h1></h1>
         
@@ -24,17 +24,20 @@
 
 
           </textarea>
-         
+           <p class="lead">Pick an awesome picture for you review.</p>
+    <input type="file" name="picture" id="picture">
+
         
         </fieldset>
         <input value="Publish it !" type="submit"/>
-</form>
 
+</form>
 
 </p>
                 </div>
                 <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <img class="img-responsive" src="img/ipad.png" alt="">
+                
+  
                 </div>
             </div>
 

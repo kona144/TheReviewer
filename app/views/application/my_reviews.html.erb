@@ -31,7 +31,7 @@ id=t.id
                     <p class="lead">
 <p class="lead">I'm to lazy to read the review, but I can spot grammar mistakes from a mile away.</p>
                         <form action="/change_content" method="POST" >
-                            <textarea rows="10" cols="75" id="content" name="content">
+                            <textarea rows="10" cols="55" id="content" name="content">
 
 <%=t.content%>
           </textarea>
@@ -41,8 +41,16 @@ id=t.id
                             </p>
                 </div>
                 <div class="col-lg-5 col-lg-offset-2 col-sm-6"><!--TLE PRIDEJO SLIKE-->
-                    <img class="img-responsive" src="img/ipad.png" alt="" width="50%" height="50%">
+                    <img class="img-responsive" width="50%" alt="Please select an image to upload" 
+                    src=uploads/reviews/<%=t.review_pic%>></img>
                 </div>
+                <form action="/review_pic_upload" method="post" enctype="multipart/form-data">
+    Change the review picture.
+    <input type="file" name="picture" id="picture">
+    <input type="hidden" id="review_id" name="review_id" value=<%=id%>></input>
+    <input type="submit" value="Change it !" name="submit">
+</form>
+<br/><br/><br/><br/><br/><br/><br/>
                 <p class="lead">This is the last thing you want to do if your review is bad. You can edit the title or the review any time of the day.</p>
 
 

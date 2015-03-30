@@ -3,8 +3,24 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
 
   skip_before_action :verify_authenticity_token
-def log
+  def log
+  end
+def logs
+if session[:signed_in] == true
 
+admin=User.where(email: session[:email]).first
+
+if admin.admin != "1"
+
+redirect_to '/home'
+
+  end
+
+
+else
+  redirect_to '/index'
+end
+  
 
 end
 
@@ -118,14 +134,20 @@ user = User.where(email: session[:email]).first
 title = params[:title]
 content = params[:content]
 user_id = user.id
+review_pic="review_zvezda.jpg"
 
-review = Review.create_review(title,content,user_id)
+review = Review.create_review(title,content,review_pic,user_id)
 
 if review
-  
-  
+
+uploaded_io = params[:picture]
+  File.open(Rails.root.join('public', 'uploads', 'reviews' , review.id.to_s + uploaded_io.original_filename), 'wb') do |file|
+    file.write(uploaded_io.read)
+review_image=review.id.to_s + uploaded_io.original_filename
+    review.review_pic=review_image
+    review.save
+  end
   redirect_to '/home#services'
-  else
     redirect_to '/new_review'
   end
 
@@ -138,12 +160,13 @@ name = params[:name]
 surname = params[:surname]
 email =params[:email]
 password =params[:password]
+profile_pic="zvezda.jpg"
 password_confirmation =params[:password_confirmation]
 existing_email=User.where(email: email).first
 if(existing_email != email)
 if(password == password_confirmation)
 
-user = User.create_with_password(name,surname,email,password)
+user = User.create_with_password(name,surname,email,profile_pic,password)
 if user
 	session[:signed_in] = true
 	session[:email] = user.email
@@ -187,20 +210,17 @@ end
 
 
 
-def self.save
-    name =  upload['datafile'].original_filename
-    directory = "public/uploads/profiles"
-    # create the file path
-    path = File.join(directory, name)
-    # write the file
-    File.open(path, "wb") { |f| f.write(upload['datafile'].read) }
 
+def profile_pic_upload
+  user = User.where(email: session[:email]).first
+    uploaded_io = params[:picture]
+  File.open(Rails.root.join('public', 'uploads', 'profiles' , user.id.to_s + uploaded_io.original_filename), 'wb') do |file|
+    file.write(uploaded_io.read)
+    user_image=user.id.to_s + uploaded_io.original_filename
+    user.profile_pic=user_image
+    user.save
+    redirect_to '/profile'
   end
-
-
-def uploadFile
-    post = DataFile.save(params[:upload])
-    render :text => "File has been uploaded successfully"
   end
 
   def change_name
@@ -273,8 +293,22 @@ redirect_to '/my_reviews#services'
 
 end
 
-def remove_review
+def review_pic_upload
+  review=Review.find(params[:review_id])
+    uploaded_io = params[:picture]
+  File.open(Rails.root.join('public', 'uploads', 'reviews' , review.id.to_s + uploaded_io.original_filename), 'wb') do |file|
+    file.write(uploaded_io.read)
+    review_image=review.id.to_s + uploaded_io.original_filename
+    review.review_pic=review_image
+    review.save
+    redirect_to '/my_reviews'
+  end
+end
 
+def remove_review
+review=Review.find(params[:review_id])
+review.destroy
+redirect_to '/my_reviews#services'
 
 end
 

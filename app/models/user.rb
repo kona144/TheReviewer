@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 validates_presence_of :name,:surname,:email,:salt,:password_hash
 validates_uniqueness_of :email
 
-def self.create_with_password(name,surname,email,password)
+def self.create_with_password(name,surname,email,profile_pic,password)
 	salt=SecureRandom.hex
 	password_hash= generate_hash(password,salt)
 
@@ -11,6 +11,7 @@ self.create(
 name:name,
 surname:surname,
 email:email,
+profile_pic:profile_pic,
 salt: salt,
 password_hash: password_hash
 
